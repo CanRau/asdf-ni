@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
-set -eu
-[ "${BASH_VERSINFO[0]}" -ge 3 ] && set -o pipefail
 
-PLUGIN_DIR="$(dirname "${BASH_SOURCE[0]}")/.."
+set -euo pipefail
 
-# shellcheck source=/dev/null
-source "$PLUGIN_DIR/lib/helpers.sh"
+current_script_path=${BASH_SOURCE[0]}
+plugin_dir=$(dirname "$(dirname "$current_script_path")")
 
-# cat <<-EOM
-# 	Manage Go installs with ASDF
-#
-# 	- https://github.com/asdf-community/asdf-golang/
-# 	- https://golang.org/
-# EOM
+# shellcheck source=./lib/utils.bash
+source "${plugin_dir}/lib/utils.bash"
 
-ls -l $PLUGIN_DIR
+ni --help
