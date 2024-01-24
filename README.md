@@ -2,12 +2,14 @@
 
 # asdf-ni [![Build](https://github.com/CanRau/asdf-ni/actions/workflows/build.yml/badge.svg)](https://github.com/CanRau/asdf-ni/actions/workflows/build.yml) [![Lint](https://github.com/CanRau/asdf-ni/actions/workflows/lint.yml/badge.svg)](https://github.com/CanRau/asdf-ni/actions/workflows/lint.yml)
 
-[ni](antfu/ni) plugin for the [asdf version manager](https://asdf-vm.com).
+[ni](https://github.com/antfu/ni) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
 # Contents
 
+- [asdf-ni ](#asdf-ni--)
+- [Contents](#contents)
 - [Dependencies](#dependencies)
 - [Install](#install)
 - [Contributing](#contributing)

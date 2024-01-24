@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for ni.
-GH_REPO="antfu/ni"
+GH_REPO="https://github.com/antfu/ni"
 TOOL_NAME="ni"
 TOOL_TEST="ni --help"
 
