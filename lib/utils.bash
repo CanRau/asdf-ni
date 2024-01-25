@@ -64,7 +64,7 @@ download_release() {
 install_version() {
 	local install_type="$1"
 	local version="$2"
-	local install_path="${3%/bin}/bin"
+	local install_path="${3%/bin}"
 
 	if [ "$install_type" != "version" ]; then
 		fail "asdf-$TOOL_NAME supports release installs only"
@@ -77,13 +77,25 @@ install_version() {
 		# chmod +x "$install_path/bin/*"
 		find "$install_path" -type f -exec chmod +x {} \;
 
+		# debug
+		# ls -l $install_path
+		# printf "\n\n"
+		# ls -l $install_path/bin
 		# printf "\n\ninstall_path $install_path\n\n"
+		# printf "\n\nASDF_DOWNLOAD_PATH $ASDF_DOWNLOAD_PATH\n\n"
 		# echo $(ls -l $install_path)
+
+
 		for f in "$install_path/bin"/*; do
+			# debug
 			# echo "File -> $f"
 			# ln -sf $(echo $f |sed -e 's/.mjs//') $f
 			mv "$f" $(echo "$f" | sed -e 's/.mjs//')
 		done
+
+		# debug
+		# printf "\n\n"
+		# ls -l $install_path/bin
 
 		# printf "\n\n"
 		# find "$install_path" -type f -exec echo '{}' \;
@@ -102,7 +114,7 @@ install_version() {
 
 		# echo "\n\ntool_cmd $tool_cmd\n\n"
 
-		test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
+		test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
 
 		echo "$TOOL_NAME $version installation was successful!"
 	) || (
