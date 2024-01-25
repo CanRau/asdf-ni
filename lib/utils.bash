@@ -64,7 +64,7 @@ download_release() {
 install_version() {
 	local install_type="$1"
 	local version="$2"
-	local install_path="${3%/bin}"
+	local install_path="${3%/bin}/bin"
 
 	if [ "$install_type" != "version" ]; then
 		fail "asdf-$TOOL_NAME supports release installs only"
@@ -72,14 +72,14 @@ install_version() {
 
 	(
 		mkdir -p "$install_path"
-		cp -r "$ASDF_DOWNLOAD_PATH/bin"/* "$install_path"
+		cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
 
 		# chmod +x "$install_path/bin/*"
 		find "$install_path" -type f -exec chmod +x {} \;
 
 		# printf "\n\ninstall_path $install_path\n\n"
 		# echo $(ls -l $install_path)
-		for f in "$install_path"/*; do
+		for f in "$install_path/bin"/*; do
 			# echo "File -> $f"
 			# ln -sf $(echo $f |sed -e 's/.mjs//') $f
 			mv "$f" $(echo "$f" | sed -e 's/.mjs//')
