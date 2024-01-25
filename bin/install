@@ -3,8 +3,8 @@
 set -euo pipefail
 
 if [[ "${ASDF_INSTALL_TYPE:-version}" == 'ref' ]]; then
-  echo >&2 "⛔ This plugin does not support installing by ref."
-  exit 1
+	echo >&2 "⛔ This plugin does not support installing by ref."
+	exit 1
 fi
 
 current_script_path=${BASH_SOURCE[0]}

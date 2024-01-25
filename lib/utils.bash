@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for ni.
 GH_REPO="https://github.com/antfu/ni"
 REGISTRY_URL="https://registry.npmjs.org/@antfu/ni"
 TOOL_NAME="ni"
@@ -33,17 +32,17 @@ sort_versions() {
 
 list_all_versions() {
 	curl --silent --fail --show-error --location ${REGISTRY_URL} |
-  grep -Eo '"version":"[^"]+"' |
-  cut -d\" -f4 |
-  sort_versions |
-  xargs echo
+		grep -Eo '"version":"[^"]+"' |
+		cut -d\" -f4 |
+		sort_versions |
+		xargs echo
 }
 
 get_latest_version() {
 	curl --silent --fail --show-error --location ${REGISTRY_URL} |
-  grep -Eo '"latest":"[^"]+"' |
-  cut -d\" -f4 |
-  xargs echo
+		grep -Eo '"latest":"[^"]+"' |
+		cut -d\" -f4 |
+		xargs echo
 }
 
 download_release() {
@@ -51,9 +50,6 @@ download_release() {
 	version="$1"
 	filename="$2"
 
-	# TODO: Adapt the release URL convention for ni
-	# url="$GH_REPO/archive/v${version}.tar.gz"
-	# tarball url via npm view @antfu/ni dist.tarball
 	url="${REGISTRY_URL}/-/ni-${ASDF_INSTALL_VERSION}.tgz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
@@ -86,7 +82,7 @@ install_version() {
 		for f in "$install_path"/*; do
 			# echo "File -> $f"
 			# ln -sf $(echo $f |sed -e 's/.mjs//') $f
-			mv $f $(echo $f |sed -e 's/.mjs//')
+			mv "$f" $(echo "$f" | sed -e 's/.mjs//')
 		done
 
 		# printf "\n\n"
@@ -101,11 +97,10 @@ install_version() {
 		# done
 		# printf "\n\nASDF_DOWNLOAD_PATH\n\n"
 
-		# TODO: Assert ni executable exists.
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
 
-		echo "\n\ntool_cmd $tool_cmd\n\n"
+		# echo "\n\ntool_cmd $tool_cmd\n\n"
 
 		test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
 
@@ -115,36 +110,3 @@ install_version() {
 		fail "An error occurred while installing $TOOL_NAME $version."
 	)
 }
-
-# install_version() {
-# 	local install_type="$1"
-# 	local version="$2"
-# 	local install_path="$3"
-# 	# tarball url via npm view @antfu/ni dist.tarball
-# 	local tarball_url="https://registry.npmjs.org/@antfu/ni/-/ni-${ASDF_INSTALL_VERSION}.tgz"
-
-# 	if [ "$install_type" != "version" ]; then
-# 		fail "asdf-$TOOL_NAME supports release installs only"
-# 	fi
-
-# 	(
-# 		echo "Downloading pnpm v${version} from ${tarball_url}"
-# 		curl --silent --fail --show-error --location "${tarball_url}" |
-# 		tar xzf - --strip-components=1 --no-same-owner -C "${install_path}"
-# 		echo "\ninstall_path\n"
-# 		la $install_path
-# 		echo "\ninstall_path\n"
-# 		mkdir -p "$install_path"
-# 		# cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
-
-# 		# TODO: Assert ni executable exists.
-# 		local tool_cmd
-# 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
-# 		test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
-
-# 		echo "$TOOL_NAME $version installation was successful!"
-# 	) || (
-# 		rm -rf "$install_path"
-# 		fail "An error occurred while installing $TOOL_NAME $version."
-# 	)
-# }
