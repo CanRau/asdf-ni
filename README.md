@@ -63,4 +63,4 @@ The following plugins were of great help understanding how to get asdf-ni workin
 
 # License
 
-See [LICENSE](LICENSE) © ['CanRau'](https://github.com/CanRau/)
+See [LICENSE](LICENSE) © [CanRau](https://github.com/CanRau/)
