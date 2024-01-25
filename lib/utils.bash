@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-GH_REPO="https://github.com/antfu/ni"
+# GH_REPO="https://github.com/antfu/ni"
 REGISTRY_URL="https://registry.npmjs.org/@antfu/ni"
 TOOL_NAME="ni"
 TOOL_TEST="ni --help"
@@ -85,12 +85,12 @@ install_version() {
 		# printf "\n\nASDF_DOWNLOAD_PATH $ASDF_DOWNLOAD_PATH\n\n"
 		# echo $(ls -l $install_path)
 
-
 		for f in "$install_path/bin"/*; do
 			# debug
 			# echo "File -> $f"
 			# ln -sf $(echo $f |sed -e 's/.mjs//') $f
-			mv "$f" $(echo "$f" | sed -e 's/.mjs//')
+			# mv "$f" "$(echo "$f" | sed -e 's/.mjs//')"
+			mv "$f" "${f//.mjs/''/}"
 		done
 
 		# debug
