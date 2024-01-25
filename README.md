@@ -13,6 +13,7 @@
 - [Dependencies](#dependencies)
 - [Install](#install)
 - [Contributing](#contributing)
+- [Inspiration](#inspiration)
 - [License](#license)
 
 # Dependencies
@@ -52,6 +53,13 @@ Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on ho
 Contributions of any kind welcome! See the [contributing guide](contributing.md).
 
 [Thanks goes to these contributors](https://github.com/CanRau/asdf-ni/graphs/contributors)!
+
+# Inspiration
+
+The following plugins were of great help understanding how to get asdf-ni working
+
+- [asdf-pnpm](https://github.com/jonathanmorley/asdf-pnpm)
+- [asdf-golang](https://github.com/asdf-community/asdf-golang)
 
 # License
 
