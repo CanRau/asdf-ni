@@ -90,7 +90,7 @@ install_version() {
 			# echo "File -> $f"
 			# ln -sf $(echo $f |sed -e 's/.mjs//') $f
 			# mv "$f" "$(echo "$f" | sed -e 's/.mjs//')"
-			mv "$f" "${f//.mjs/''/}"
+			mv "$f" "${f%.mjs}"
 		done
 
 		# debug
