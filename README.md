@@ -25,8 +25,6 @@
 Plugin:
 
 ```shell
-asdf plugin add ni
-# or
 asdf plugin add ni https://github.com/CanRau/asdf-ni.git
 ```
 
